@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Peminjaman Buku Perpustakaan</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  :root {
+    --biru-tua: #0b4f9c;
+    --biru: #1e88e5;
+    --biru-muda: #64b5f6;
+    --biru-es: #cfe9ff;
+    --putih: #ffffff;
+    --teks: #16365c;
+    --teks-lembut: #5d7a9c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { min-height: 100%; }
+
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--teks);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    position: relative;
+    overflow-x: hidden;
+    /* gradasi biru-putih yang bergerak */
+    background: linear-gradient(120deg, #e8f4ff, #9fd0ff, #ffffff, #5aaaf5, #d6ecff, #ffffff);
+    background-size: 400% 400%;
+    animation: gradasiGerak 18s ease-in-out infinite;
+  }
+
+  @keyframes gradasiGerak {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ================= LATAR: ANGIN SEPOI-SEPOI ================= */
+  .latar {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* awan / kabut sejuk yang melayang pelan */
+  .kabut {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .55;
+    animation: melayang 22s ease-in-out infinite;
+  }
+  .kabut.k1 { width: 420px; height: 420px; background: #ffffff; top: -120px; left: -100px; }
+  .kabut.k2 { width: 520px; height: 520px; background: #7fc0ff; bottom: -180px; right: -120px; animation-duration: 28s; animation-delay: -6s; }
+  .kabut.k3 { width: 300px; height: 300px; background: #ffffff; top: 40%; left: 55%; animation-duration: 25s; animation-delay: -12s; opacity: .45; }
+  .kabut.k4 { width: 360px; height: 360px; background: #b7dcff; top: 55%; left: -120px; animation-duration: 30s; animation-delay: -3s; }
+
+  @keyframes melayang {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(80px, 40px) scale(1.1); }
+    66%      { transform: translate(-40px, 80px) scale(.95); }
+  }
+
+  /* garis-garis angin yang berhembus */
+  .angin {
+    position: absolute;
+    left: -40%;
+    height: 3px;
+    width: 40%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.95), transparent);
+    filter: blur(.6px);
+    opacity: 0;
+    animation: hembus 9s linear infinite;
+  }
+  .angin::after { /* lengkungan kecil di ujung garis */
+    content: "";
+    position: absolute;
+    right: 12%;
+    top: -9px;
+    width: 26px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,.8);
+    border-color: rgba(255,255,255,.8) rgba(255,255,255,.8) transparent transparent;
+    border-radius: 0 100% 0 0;
+    transform: rotate(-10deg);
+    opacity: .7;
+  }
+  .angin:nth-child(5)  { top: 8%;  animation-delay: 0s;   animation-duration: 8s;  width: 34%; }
+  .angin:nth-child(6)  { top: 17%; animation-delay: 2.2s; animation-duration: 11s; width: 48%; }
+  .angin:nth-child(7)  { top: 29%; animation-delay: 5s;   animation-duration: 9s;  width: 30%; }
+  .angin:nth-child(8)  { top: 41%; animation-delay: 1s;   animation-duration: 12s; width: 52%; }
+  .angin:nth-child(9)  { top: 53%; animation-delay: 6.5s; animation-duration: 8.5s; width: 36%; }
+  .angin:nth-child(10) { top: 64%; animation-delay: 3.3s; animation-duration: 10s; width: 44%; }
+  .angin:nth-child(11) { top: 76%; animation-delay: 7.7s; animation-duration: 9.5s; width: 32%; }
+  .angin:nth-child(12) { top: 88%; animation-delay: 4.4s; animation-duration: 11.5s; width: 50%; }
+
+  @keyframes hembus {
+    0%   { transform: translateX(0) translateY(0); opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { transform: translateX(160vw) translateY(14px); }
+    90%  { opacity: 1; }
+    100% { transform: translateX(330vw) translateY(-8px); opacity: 0; }
+  }
+
+  /* gelombang di bawah */
+  .gelombang {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 200%;
+    height: 180px;
+    animation: ombak 16s linear infinite;
+  }
+  .gelombang.g2 { height: 140px; opacity: .6; animation-duration: 24s; animation-direction: reverse; }
+  .gelombang.g3 { height: 100px; opacity: .8; animation-duration: 32s; }
+  @keyframes ombak {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ================= KARTU FORM ================= */
+  .kartu {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 780px;
+    padding: 44px 48px 40px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(255,255,255,.88), rgba(228,242,255,.72));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,.9);
+    box-shadow:
+      0 30px 60px -15px rgba(11, 79, 156, .35),
+      0 12px 24px -8px rgba(30, 136, 229, .25),
+      inset 0 2px 0 rgba(255,255,255,1),
+      inset 0 -3px 8px rgba(100, 181, 246, .18);
+    animation: muncul .9s cubic-bezier(.2,.8,.2,1) both, timbul 7s ease-in-out 1s infinite;
+  }
+
+  @keyframes muncul {
+    from { opacity: 0; transform: translateY(40px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes timbul {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  /* garis kilau bergerak di tepi atas kartu */
+  .kartu::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 28px; right: 28px;
+    height: 4px;
+    border-radius: 0 0 6px 6px;
+    background: linear-gradient(90deg, var(--biru-tua), var(--biru-muda), #fff, var(--biru), var(--biru-tua));
+    background-size: 300% 100%;
+    animation: kilau 5s linear infinite;
+  }
+  @keyframes kilau {
+    from { background-position: 0% 0; }
+    to   { background-position: 300% 0; }
+  }
+
+  /* ================= JUDUL ================= */
+  .kepala { text-align: center; margin-bottom: 32px; }
+
+  .ikon-buku {
+    width: 78px; height: 78px;
+    margin: 0 auto 18px;
+    display: grid; place-items: center;
+    font-size: 34px;
+    color: #fff;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #64b5f6, #1e88e5 55%, #0b4f9c);
+    background-size: 200% 200%;
+    animation: gradasiGerak 6s ease infinite;
+    box-shadow:
+      0 14px 24px -6px rgba(30,136,229,.55),
+      inset 0 3px 6px rgba(255,255,255,.55),
+      inset 0 -6px 10px rgba(11,79,156,.45);
+    text-shadow: 0 2px 4px rgba(0,0,0,.25);
+    transform: rotate(-6deg);
+  }
+
+  .kepala h1 {
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #0b4f9c, #1e88e5, #64b5f6, #1e88e5, #0b4f9c);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: kilau 6s linear infinite;
+    filter: drop-shadow(0 3px 2px rgba(11,79,156,.18));
+  }
+  .kepala p { margin-top: 8px; color: var(--teks-lembut); font-size: .98rem; }
+
+  /* ================= BARIS FORM ================= */
+  .baris {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 8px 20px;
+    align-items: center;
+    margin-bottom: 22px;
+    animation: naik .7s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .baris:nth-of-type(1) { animation-delay: .15s; }
+  .baris:nth-of-type(2) { animation-delay: .22s; }
+  .baris:nth-of-type(3) { animation-delay: .29s; }
+  .baris:nth-of-type(4) { animation-delay: .36s; }
+  .baris:nth-of-type(5) { animation-delay: .43s; }
+  .baris:nth-of-type(6) { animation-delay: .50s; }
+  .baris:nth-of-type(7) { animation-delay: .57s; }
+  .baris:nth-of-type(8) { animation-delay: .64s; }
+  .baris:nth-of-type(9) { animation-delay: .71s; }
+
+  @keyframes naik {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .baris > label {
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--biru-tua);
+    letter-spacing: .01em;
+  }
+
+  .bantuan { grid-column: 2; font-size: .8rem; color: var(--teks-lembut); margin-top: -2px; }
+
+  /* ================= KOLOM INPUT (TIMBUL) ================= */
+  .kolom {
+    display: flex;
+    align-items: stretch;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #ffffff, #e6f2ff);
+    box-shadow:
+      6px 6px 14px rgba(100,160,220,.30),
+      -6px -6px 14px rgba(255,255,255,.95),
+      inset 0 0 0 1px rgba(255,255,255,.8);
+    transition: transform .3s ease, box-shadow .3s ease;
+    overflow: hidden;
+  }
+  .kolom:hover { transform: translateY(-2px); }
+
+  .kolom:focus-within {
+    transform: translateY(-3px);
+    background: #fff;
+    box-shadow:
+      0 14px 26px -8px rgba(30,136,229,.45),
+      0 0 0 3px rgba(100,181,246,.55),
+      inset 0 0 0 1px #fff;
+  }
+
+  .kolom .ikon {
+    width: 52px;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(160deg, #64b5f6, #1e88e5 60%, #0b4f9c);
+    background-size: 100% 200%;
+    transition: background-position .5s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,.25);
+    flex-shrink: 0;
+  }
+  .kolom:focus-within .ikon { background-position: 0 100%; }
+
+  .kolom input,
+  .kolom select,
+  .kolom textarea {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: .98rem;
+    color: var(--teks);
+    background: transparent;
+    border: 0;
+    outline: 0;
+  }
+  .kolom input::placeholder,
+  .kolom textarea::placeholder { color: #9bb5d1; }
+
+  .kolom select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'><path d='M1 1l6 6 6-6' fill='none' stroke='%231e88e5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  .kolom textarea { resize: vertical; min-height: 120px; }
+  .kolom.area .ikon { align-items: flex-start; padding-top: 16px; }
+
+  /* ================= CHECKBOX ================= */
+  .setuju {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f4faff, #e0efff);
+    box-shadow: inset 3px 3px 8px rgba(100,160,220,.22), inset -3px -3px 8px rgba(255,255,255,.9);
+    font-size: .93rem;
+    line-height: 1.45;
+    color: var(--teks);
+    font-weight: 500;
+  }
+  .setuju input { position: absolute; opacity: 0; pointer-events: none; }
+  .kotak {
+    flex: 0 0 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 2px 2px 6px rgba(100,160,220,.4), -2px -2px 6px #fff;
+    display: grid;
+    place-items: center;
+    color: transparent;
+    font-size: 14px;
+    transition: all .3s ease;
+  }
+  .setuju:hover .kotak { transform: scale(1.08); }
+  .setuju input:checked + .kotak {
+    color: #fff;
+    background: linear-gradient(135deg, #64b5f6, #0b4f9c);
+    box-shadow: 0 6px 12px rgba(30,136,229,.5), inset 0 2px 3px rgba(255,255,255,.4);
+  }
+  .setuju input:focus-visible + .kotak { outline: 3px solid rgba(100,181,246,.6); outline-offset: 2px; }
+
+  /* ================= TOMBOL ================= */
+  .aksi { display: flex; justify-content: flex-end; margin-top: 30px; animation: naik .7s .8s cubic-bezier(.2,.8,.2,1) both; }
+
+  .tombol {
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    cursor: pointer;
+    padding: 16px 46px;
+    border-radius: 16px;
+    font: inherit;
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(110deg, #0b4f9c, #1e88e5, #64b5f6, #1e88e5, #0b4f9c);
+    background-size: 300% 100%;
+    animation: kilau 5s linear infinite;
+    box-shadow:
+      0 14px 24px -6px rgba(11,79,156,.55),
+      inset 0 2px 3px rgba(255,255,255,.5),
+      inset 0 -4px 8px rgba(8,50,110,.45);
+    text-shadow: 0 2px 4px rgba(0,0,0,.3);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .tombol i { margin-right: 10px; }
+  .tombol::after { /* kilatan cahaya saat hover */
+    content: "";
+    position: absolute;
+    top: 0; left: -80%;
+    width: 50%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent);
+    transform: skewX(-20deg);
+    transition: left .7s ease;
+  }
+  .tombol:hover { transform: translateY(-4px); box-shadow: 0 22px 32px -8px rgba(11,79,156,.6), inset 0 2px 3px rgba(255,255,255,.5), inset 0 -4px 8px rgba(8,50,110,.45); }
+  .tombol:hover::after { left: 130%; }
+  .tombol:active { transform: translateY(1px); box-shadow: 0 6px 12px -4px rgba(11,79,156,.6), inset 0 4px 8px rgba(8,50,110,.5); }
+  .tombol:focus-visible { outline: 3px solid rgba(100,181,246,.7); outline-offset: 3px; }
+
+  /* ================= RESPONSIF ================= */
+  @media (max-width: 720px) {
+    .kartu { padding: 32px 22px 28px; border-radius: 22px; }
+    .baris { grid-template-columns: 1fr; gap: 8px; }
+    .bantuan { grid-column: 1; }
+    .aksi { justify-content: stretch; }
+    .tombol { width: 100%; }
+  }
+
+  /* hormati pengguna yang mengurangi animasi */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- LATAR: angin sepoi-sepoi & suasana sejuk -->
+  <div class="latar" aria-hidden="true">
+    <span class="kabut k1"></span>
+    <span class="kabut k2"></span>
+    <span class="kabut k3"></span>
+    <span class="kabut k4"></span>
+
+    <span class="angin"></span>
+    <span class="angin"></span>
+    <span class="angin"></span>
+    <span class="angin"></span>
+    <span class="angin"></span>
+    <span class="angin"></span>
+    <span class="angin"></span>
+    <span class="angin"></span>
+
+    <svg class="gelombang g2" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path fill="#9fd0ff" d="M0,80 C120,30 240,130 360,80 C480,30 600,130 720,80 C840,30 960,130 1080,80 C1200,30 1320,130 1440,80 L1440,160 L0,160 Z"/>
+    </svg>
+    <svg class="gelombang" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path fill="#cfe9ff" fill-opacity=".85" d="M0,100 C120,60 240,140 360,100 C480,60 600,140 720,100 C840,60 960,140 1080,100 C1200,60 1320,140 1440,100 L1440,160 L0,160 Z"/>
+    </svg>
+    <svg class="gelombang g3" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path fill="#ffffff" fill-opacity=".9" d="M0,120 C120,90 240,150 360,120 C480,90 600,150 720,120 C840,90 960,150 1080,120 C1200,90 1320,150 1440,120 L1440,160 L0,160 Z"/>
+    </svg>
+  </div>
+
+  <!-- FORM -->
+  <form class="kartu" action="#" method="post">
+
+    <div class="kepala">
+      <div class="ikon-buku"><i class="fa fa-book"></i></div>
+      <h1>Form Peminjaman Buku</h1>
+      <p>Perpustakaan &bull; Isi data dengan lengkap dan benar</p>
+    </div>
+
+    <div class="baris">
+      <label for="nama">Nama</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-address-book-o"></i></span>
+        <input id="nama" name="nama" type="text" placeholder="Masukkan nama lengkap" required>
+      </div>
+    </div>
+
+    <div class="baris">
+      <label for="nim">NIM</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-address-card-o"></i></span>
+        <input id="nim" name="nim" type="text" placeholder="Masukkan NIM" required>
+      </div>
+    </div>
+
+    <div class="baris">
+      <label for="pilih_kelas">Kelas</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-graduation-cap"></i></span>
+        <select id="pilih_kelas" name="pilih_kelas" aria-describedby="bantuanKelas">
+          <option value="PPL">Pengembangan Perangkat Lunak</option>
+          <option value="DM">Digital Marketing</option>
+        </select>
+      </div>
+      <span id="bantuanKelas" class="bantuan">Pilih kelas Anda</span>
+    </div>
+
+    <div class="baris">
+      <label for="judul">Judul Buku</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-book"></i></span>
+        <input id="judul" name="judul" type="text" placeholder="Judul buku yang dipinjam">
+      </div>
+    </div>
+
+    <div class="baris">
+      <label for="kode">Kode Buku</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-barcode"></i></span>
+        <input id="kode" name="kode" type="text" placeholder="Contoh: BK-0001">
+      </div>
+    </div>
+
+    <div class="baris">
+      <label for="tgl_pinjam">Tanggal Peminjaman</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-calendar-minus-o"></i></span>
+        <input id="tgl_pinjam" name="tgl_pinjam" type="date" required>
+      </div>
+    </div>
+
+    <div class="baris">
+      <label for="tgl_kembali">Tanggal Pengembalian</label>
+      <div class="kolom">
+        <span class="ikon"><i class="fa fa-calendar-check-o"></i></span>
+        <input id="tgl_kembali" name="tgl_kembali" type="date" required>
+      </div>
+    </div>
+
+    <div class="baris">
+      <label for="catatan">Catatan</label>
+      <div class="kolom area">
+        <span class="ikon"><i class="fa fa-pencil"></i></span>
+        <textarea id="catatan" name="catatan" rows="5" placeholder="Tulis catatan tambahan (opsional)"></textarea>
+      </div>
+    </div>
+
+    <div class="baris">
+      <label>Persetujuan</label>
+      <label class="setuju">
+        <input type="checkbox" name="setuju" required>
+        <span class="kotak"><i class="fa fa-check"></i></span>
+        <span>Saya bersedia menjaga dan mengembalikan buku tepat waktu</span>
+      </label>
+    </div>
+
+    <div class="aksi">
+      <button class="tombol" type="submit" name="submit"><i class="fa fa-paper-plane"></i>Submit</button>
+    </div>
+
+  </form>
+
+</body>
+</html>
