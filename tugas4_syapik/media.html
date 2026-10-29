@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ GALERY OASIS</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/WhatsApp Image 2026-10-29 at 09.31.20.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: rgb(43, 13, 39);
+            --bg-2: #4a1042;
+            --accent: #ff4fa3;
+            --accent-2: #ffb347;
+            --accent-3: #7c5cff;
+            --text: #fff;
+            --muted: rgba(255,255,255,.7);
+            --glass: rgba(255,255,255,.08);
+            --border: rgba(255,255,255,.18);
+        }
+        body.light {
+            --bg: #fff3fa;
+            --bg-2: #ffd6ec;
+            --text: #2b0d27;
+            --muted: rgba(43,13,39,.7);
+            --glass: rgba(255,255,255,.6);
+            --border: rgba(43,13,39,.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(43, 13, 39);
+            background: linear-gradient(135deg, var(--bg), var(--bg-2), var(--bg), #1a0a3d);
+            background-size: 400% 400%;
+            animation: bgMove 18s ease infinite;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: color .4s;
+        }
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        .cursor-glow {
+            position: fixed; width: 320px; height: 320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,79,163,.28), transparent 65%);
+            pointer-events: none; transform: translate(-50%, -50%); z-index: 1;
+        }
+        .progress {
+            position: fixed; top: 0; left: 0; height: 4px; width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+            z-index: 100;
+        }
+ 
+        /* NAV */
+        nav {
+            position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px; align-items: center;
+            padding: 8px 12px; border-radius: 50px;
+            background: var(--glass); border: 1px solid var(--border);
+            backdrop-filter: blur(14px); z-index: 90;
+        }
+        nav a {
+            color: var(--text); text-decoration: none; font-size: .85rem;
+            padding: 8px 14px; border-radius: 30px; transition: .3s;
+        }
+        nav a:hover { background: var(--accent); transform: translateY(-2px); }
+        #themeBtn {
+            border: none; background: transparent; font-size: 1.1rem; cursor: pointer; padding: 6px 10px;
+        }
+ 
+        main { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; padding: 0 20px 80px; }
+ 
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 {
+            font-size: clamp(2.4rem, 8vw, 5rem); font-weight: 800; line-height: 1.1;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+            background-size: 300% auto; -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; animation: shine 5s linear infinite;
+        }
+        @keyframes shine { to { background-position: 300% center; } }
+        .hero .script { font-family: 'Pacifico', cursive; font-size: clamp(1.2rem, 4vw, 2rem); color: var(--accent-2); margin-bottom: 10px; }
+        .typing { font-size: 1.15rem; color: var(--muted); margin-top: 18px; min-height: 1.8em; }
+        .typing::after { content: '|'; animation: blink .8s infinite; color: var(--accent); }
+        @keyframes blink { 50% { opacity: 0; } }
+        .scroll-hint { margin-top: 50px; animation: bounce 1.8s infinite; font-size: 2rem; text-decoration: none; color: var(--text); }
+        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
+ 
+        /* SECTIONS */
+        section { margin: 90px 0; }
+        .divider {
+            height: 3px; border: none; border-radius: 3px; margin-bottom: 30px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+        }
+        .title { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+        .subtitle { color: var(--muted); margin-bottom: 26px; }
+ 
+        .card {
+            background: var(--glass); border: 1px solid var(--border);
+            border-radius: 24px; padding: 22px; backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0,0,0,.3); transition: .4s;
+        }
+        .card:hover { box-shadow: 0 25px 60px rgba(255,79,163,.3); }
+ 
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(.2,.8,.2,1); }
+        .reveal.show { opacity: 1; transform: none; }
+ 
+        /* IMAGE */
+        .img-wrap { perspective: 900px; text-align: center; }
+        .img-wrap img {
+            width: 60%; min-width: 260px; border-radius: 20px;
+            transition: transform .15s ease-out; transform-style: preserve-3d;
+            border: 3px solid transparent;
+            background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                        linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3)) border-box;
+            cursor: zoom-in;
+        }
+        .img-hint { margin-top: 12px; font-size: .85rem; color: var(--muted); }
+ 
+        /* AUDIO */
+        .player { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+        .vinyl {
+            width: 130px; height: 130px; border-radius: 50%; flex-shrink: 0;
+            background: repeating-radial-gradient(circle, #111 0 3px, #1d1d1d 3px 6px);
+            display: grid; place-items: center; border: 4px solid #000;
+            box-shadow: 0 0 30px rgba(255,79,163,.4);
+            animation: spin 4s linear infinite; animation-play-state: paused;
+        }
+        .vinyl::after {
+            content: '♪'; width: 46px; height: 46px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            display: grid; place-items: center; font-size: 1.3rem; color: #fff;
+        }
+        .vinyl.playing { animation-play-state: running; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .player-info { flex: 1; min-width: 240px; }
+        .eq { display: flex; gap: 5px; align-items: flex-end; height: 46px; margin: 12px 0; }
+        .eq span {
+            width: 7px; height: 8px; border-radius: 4px;
+            background: linear-gradient(to top, var(--accent), var(--accent-2));
+        }
+        .eq.on span { animation: eq 1s ease-in-out infinite; }
+        .eq.on span:nth-child(2n) { animation-duration: .7s; }
+        .eq.on span:nth-child(3n) { animation-duration: 1.3s; }
+        .eq.on span:nth-child(4n) { animation-duration: .9s; animation-delay: .2s; }
+        @keyframes eq { 0%,100% { height: 8px; } 50% { height: 44px; } }
+        audio { width: 100%; border-radius: 30px; }
+ 
+        /* VIDEO / IFRAME */
+        .video-box video { width: 100%; border-radius: 18px; display: block; }
+        .yt { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 18px; overflow: hidden; }
+        .yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+ 
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,.88); display: none;
+            align-items: center; justify-content: center; z-index: 200; cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 92%; max-height: 92%; border-radius: 16px; animation: pop .35s; }
+        @keyframes pop { from { transform: scale(.7); opacity: 0; } }
+ 
+        /* FOOTER */
+        footer { position: relative; z-index: 2; text-align: center; padding: 40px 20px; color: var(--muted); }
+        footer .heart { color: var(--accent); display: inline-block; animation: beat 1.2s infinite; }
+        @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.4); } }
+ 
+        .top-btn {
+            position: fixed; right: 20px; bottom: 20px; width: 48px; height: 48px; border: none;
+            border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-3));
+            color: #fff; font-size: 1.3rem; cursor: pointer; z-index: 90;
+            opacity: 0; pointer-events: none; transition: .4s;
+        }
+        .top-btn.show { opacity: 1; pointer-events: auto; }
+        .top-btn:hover { transform: translateY(-5px) scale(1.1); }
+ 
+        @media (max-width: 600px) {
+            nav a { padding: 6px 9px; font-size: .75rem; }
+            .vinyl { margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    <canvas id="particles"></canvas>
+    <div class="cursor-glow" id="glow"></div>
+ 
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#foto">Foto</a>
+        <a href="#musik">Musik</a>
+        <a href="#video">Video</a>
+        <a href="#youtube">YouTube</a>
+        <button id="themeBtn" title="Ganti tema">🌙</button>
+    </nav>
+ 
+    <main>
+        <!-- HERO -->
+        <header class="hero" id="home">
+            <p class="script">Selamat datang di</p>
+            <h1>GALERY OASIS<br>✨</h1>
+            <p class="typing" id="typing"></p>
+            <a href="#foto" class="scroll-hint">⌄</a>
+        </header>
+ 
+        <!-- FOTO -->
+        <section id="foto" class="reveal">
+            <hr class="divider">
+            <h2 class="title">📸 Galeri Foto</h2>
+            <p class="subtitle">Gerakkan mouse di atas foto, klik untuk memperbesar.</p>
+            <div class="card img-wrap">
+                <img id="photo" src="assets/images/argdjdj.jpg" alt="gambar1">
+                <p class="img-hint">💡 Efek 3D mengikuti kursor kamu</p>
+            </div>
+        </section>
+ 
+        <!-- AUDIO -->
+        <section id="musik" class="reveal">
+            <hr class="divider">
+            <h2 class="title">🎧 Pemutar Musik</h2>
+            <p class="subtitle">Putar lagu, piringan hitam ikut berputar.</p>
+            <div class="card player">
+                <div class="vinyl" id="vinyl"></div>
+                <div class="player-info">
+                    <h3>Oasis – Wonderwall</h3>
+                    <div class="eq" id="eq">
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span>
+                    </div>
+                    <!--tag audio-->
+                    <audio controls id="audio">
+                        <source src="assets/audio/Oasis - Wonderwall (Official Video) - OasisVEVO.mp3" type="audio/mpeg">
+                        Browser kamu tidak mendukung audio.
+                    </audio>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- VIDEO -->
+        <section id="video" class="reveal">
+            <hr class="divider">
+            <h2 class="title">🎬 Ruang Video</h2>
+            <p class="subtitle">Tonton video langsung dari koleksi lokal.</p>
+            <div class="card video-box">
+                <!--tag video-->
+                <video controls>
+                    <source src="assets/video/your_video.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
+            </div>
+        </section>
+ 
+        <!-- YOUTUBE -->
+        <section id="youtube" class="reveal">
+            <hr class="divider">
+            <h2 class="title">▶️ Dari YouTube</h2>
+            <p class="subtitle">Video embed yang responsif di semua layar.</p>
+            <div class="card">
+                <!--embed/frame-->
+                <div class="yt">
+                    <iframe src="https://www.youtube.com/embed/bx1Bh8ZvH84?si=urd3b80TN1eFL79M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+ 
+    <footer>
+        Dibuat dengan <span class="heart">❤</span> dan sedikit sihir CSS &amp; JavaScript
+    </footer>
+ 
+    <div class="lightbox" id="lightbox"><img id="lightImg" alt="preview"></div>
+    <button class="top-btn" id="topBtn" title="Ke atas">↑</button>
+ 
+    <script>
+        // ===== Efek mengetik =====
+        const words = ['Foto yang memukau 📷', 'Musik yang menenangkan 🎶', 'Video yang menghibur 🎥', 'Semua dalam satu halaman ✨'];
+        const typingEl = document.getElementById('typing');
+        let w = 0, c = 0, del = false;
+        (function type() {
+            const word = words[w];
+            typingEl.textContent = word.substring(0, c);
+            if (!del && c === word.length) { del = true; return setTimeout(type, 1500); }
+            if (del && c === 0) { del = false; w = (w + 1) % words.length; }
+            c += del ? -1 : 1;
+            setTimeout(type, del ? 40 : 90);
+        })();
+ 
+        // ===== Partikel melayang =====
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+        function resize() {
+            canvas.width = innerWidth; canvas.height = innerHeight;
+            dots = Array.from({ length: Math.min(90, innerWidth / 14) }, () => ({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                r: Math.random() * 2.5 + .5, vx: (Math.random() - .5) * .5, vy: (Math.random() - .5) * .5
+            }));
+        }
+        addEventListener('resize', resize); resize();
+        (function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.forEach((p, i) => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,170,220,.7)'; ctx.fill();
+                for (let j = i + 1; j < dots.length; j++) {
+                    const q = dots[j], d = Math.hypot(p.x - q.x, p.y - q.y);
+                    if (d < 110) {
+                        ctx.strokeStyle = `rgba(255,120,200,${.15 * (1 - d / 110)})`;
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(draw);
+        })();
+ 
+        // ===== Cahaya mengikuti kursor =====
+        const glow = document.getElementById('glow');
+        addEventListener('mousemove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+ 
+        // ===== Scroll: progress bar, tombol atas, reveal =====
+        const progress = document.getElementById('progress');
+        const topBtn = document.getElementById('topBtn');
+        addEventListener('scroll', () => {
+            const h = document.documentElement.scrollHeight - innerHeight;
+            progress.style.width = (scrollY / h * 100) + '%';
+            topBtn.classList.toggle('show', scrollY > 400);
+        });
+        topBtn.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+        const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('show')), { threshold: .15 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+ 
+        // ===== Foto: tilt 3D + lightbox =====
+        const photo = document.getElementById('photo');
+        photo.addEventListener('mousemove', e => {
+            const r = photo.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+            photo.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 18}deg) scale(1.04)`;
+        });
+        photo.addEventListener('mouseleave', () => photo.style.transform = '');
+        const lb = document.getElementById('lightbox');
+        photo.onclick = () => { document.getElementById('lightImg').src = photo.src; lb.classList.add('open'); };
+        lb.onclick = () => lb.classList.remove('open');
+        addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('open'));
+ 
+        // ===== Audio: vinyl + equalizer =====
+        const audio = document.getElementById('audio');
+        const vinyl = document.getElementById('vinyl');
+        const eq = document.getElementById('eq');
+        const setPlay = on => { vinyl.classList.toggle('playing', on); eq.classList.toggle('on', on); };
+        audio.addEventListener('play', () => setPlay(true));
+        audio.addEventListener('pause', () => setPlay(false));
+        audio.addEventListener('ended', () => setPlay(false));
+ 
+        // ===== Ganti tema gelap / terang =====
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.onclick = () => {
+            document.body.classList.toggle('light');
+            themeBtn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
+        };
+    </script>
+</body>
+</html>
+ 
