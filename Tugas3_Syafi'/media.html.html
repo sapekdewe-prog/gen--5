@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Multimedia Saya</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/WhatsApp%20Image%202026-10-29%20at%2009.31.20.jpeg">
+
+    <style>
+        /* ===== Variabel warna & ukuran ===== */
+        :root {
+            --bg: rgb(43, 13, 39);
+            --bg-soft: rgb(70, 22, 62);
+            --card: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.15);
+            --text: #f6eaf3;
+            --muted: #c9a9c0;
+            --accent: #ff7ac6;
+            --accent-2: #ffb86b;
+            --radius: 20px;
+        }
+
+        /* ===== Reset ringan ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 15% 10%, var(--bg-soft), transparent 45%),
+                radial-gradient(circle at 85% 90%, rgba(255, 122, 198, 0.18), transparent 40%),
+                var(--bg);
+            background-attachment: fixed;
+            line-height: 1.6;
+        }
+
+        /* ===== Header ===== */
+        .hero {
+            text-align: center;
+            padding: 64px 20px 32px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            color: var(--muted);
+        }
+
+        /* ===== Layout utama ===== */
+        .container {
+            width: min(1000px, 92%);
+            margin: 0 auto;
+            display: grid;
+            gap: 28px;
+            padding-bottom: 60px;
+        }
+
+        /* ===== Kartu ===== */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: muncul 0.7s ease both;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(255, 122, 198, 0.25);
+        }
+
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+
+        .card h2 {
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        /* ===== Media ===== */
+        .card img,
+        .card video,
+        .card iframe {
+            display: block;
+            width: 100%;
+            border: 0;
+            border-radius: 14px;
+        }
+
+        .card iframe { aspect-ratio: 16 / 9; }
+
+        .card audio {
+            width: 100%;
+            accent-color: var(--accent);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        /* ===== Animasi ===== */
+        @keyframes muncul {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card { animation: none; transition: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <h1>Galeri Multimedia Saya</h1>
+        <p>Gambar, musik, video, dan tontonan favorit dalam satu halaman</p>
+    </header>
+
+    <main class="container">
+
+        <!-- Gambar -->
+        <section class="card">
+            <h2>🖼️ Gambar</h2>
+            <img src="assets/images/argdjdj.jpg" alt="Gambar 1" loading="lazy">
+        </section>
+
+        <!-- Audio -->
+        <section class="card">
+            <h2>🎵 Musik</h2>
+            <audio controls preload="none">
+                <source src="assets/audio/Oasis%20-%20Wonderwall%20(Official%20Video)%20-%20OasisVEVO.mp3" type="audio/mpeg">
+                Browser kamu tidak mendukung tag audio.
+            </audio>
+        </section>
+
+        <!-- Video -->
+        <section class="card">
+            <h2>🎬 Video</h2>
+            <video controls preload="metadata">
+                <source src="assets/video/your_video.mp4" type="video/mp4">
+                Browser kamu tidak mendukung tag video.
+            </video>
+        </section>
+
+        <!-- YouTube -->
+        <section class="card">
+            <h2>▶️ Dari YouTube</h2>
+            <iframe
+                src="https://www.youtube.com/embed/bx1Bh8ZvH84?si=urd3b80TN1eFL79M"
+                title="YouTube video player"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 • Dibuat dengan HTML &amp; CSS
+    </footer>
+
+</body>
+</html>
