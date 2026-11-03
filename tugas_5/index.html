@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CV online Ahmad Syafi' Muzaqqi - lulusan MAN 1 Jombang, siswa PeTIK 2 Jombang, tertarik pada web design dan software development.">
+    <title>CV - Ahmad Syafi' Muzaqqi</title>
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="top">
+
+    <!-- Latar bergerak -->
+    <div class="bg-orbs" aria-hidden="true">
+        <span class="orb o1"></span>
+        <span class="orb o2"></span>
+        <span class="orb o3"></span>
+    </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero glass reveal">
+            <div class="shine"></div>
+
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="logo-icon">S</span>
+                    <span>SYAFI' PORTFOLIO</span>
+                </div>
+                <div class="status pill">
+                    <span class="dot"></span>
+                    OPEN TO OPPORTUNITIES
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="subtitle">HELLO, I'M</p>
+                    <h1 class="metal">
+                        <span>AHMAD</span>
+                        <span>SYAFI'</span>
+                        <span class="line3">MUZAQQI</span>
+                    </h1>
+                    <h3 class="typing-wrap">
+                        <span id="typing"></span><span class="caret"></span>
+                    </h3>
+                    <p class="description">
+                        Saya adalah pribadi yang disiplin, bertanggung jawab,
+                        dan memiliki semangat belajar tinggi. Tertarik pada
+                        dunia teknologi, desain digital, dan pengembangan website.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn primary">ABOUT ME ↓</a>
+                        <a href="#contact" class="btn secondary">CONTACT ME</a>
+                    </div>
+                </div>
+
+                <div class="hero-photo tilt" data-tilt="10">
+                    <div class="photo-frame">
+                        <img src="foto-profil.jpg" alt="Foto Ahmad Syafi' Muzaqqi" style="object-position: 62% 78%;"
+                             onerror="this.style.display='none';this.parentNode.classList.add('no-photo')">
+                        <span class="photo-fallback">⚽</span>
+                    </div>
+                    <div class="badge-ring" aria-hidden="true">
+                        <svg viewBox="0 0 100 100">
+                            <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+                            <text><textPath href="#circ">CREATIVE • TECHNOLOGY • FOOTBALL • </textPath></text>
+                        </svg>
+                        <span class="star">✦</span>
+                    </div>
+                    <div class="photo-tag">
+                        <span class="small-dot"></span> CREATIVE & TECHNOLOGY
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- STATISTIK -->
+        <section class="stats glass reveal">
+            <div class="stat-item tilt" data-tilt="8">
+                <span class="stat-icon">🎓</span>
+                <h2 class="count" data-target="2026" data-pad="0">0</h2>
+                <p>Fresh Graduate</p>
+            </div>
+            <div class="stat-item tilt" data-tilt="8">
+                <span class="stat-icon">💻</span>
+                <h2><span class="count" data-target="2" data-pad="2">0</span>+</h2>
+                <p>Digital Interests</p>
+            </div>
+            <div class="stat-item tilt" data-tilt="8">
+                <span class="stat-icon">🎨</span>
+                <h2><span class="count" data-target="3" data-pad="2">0</span>+</h2>
+                <p>Creative Skills</p>
+            </div>
+            <div class="stat-quote">
+                <p>"Great things are done by a series of small things brought together."</p>
+                <span>— Vincent van Gogh</span>
+            </div>
+        </section>
+
+
+        <!-- HIGHLIGHT -->
+        <section class="featured glass reveal">
+            <div class="section-heading"><span class="section-dot"></span> FEATURED HIGHLIGHTS</div>
+
+            <div class="cards">
+                <article class="card tilt" data-tilt="12">
+                    <div class="card-img sport">
+                        <span class="num">01</span>
+                        <span class="card-emoji">⚽</span>
+                    </div>
+                    <h3>Sepak Bola</h3>
+                    <p>Hobi yang melatih disiplin, kerja sama tim, dan sportivitas.</p>
+                    <div class="tags"><span>Teamwork</span><span>Discipline</span></div>
+                </article>
+
+                <article class="card tilt" data-tilt="12">
+                    <div class="card-img design">
+                        <span class="num">02</span>
+                        <span class="card-emoji">🎨</span>
+                    </div>
+                    <h3>Desain & Video</h3>
+                    <p>Membuat desain di Canva dan mengedit video menggunakan CapCut.</p>
+                    <div class="tags"><span>Canva</span><span>CapCut</span></div>
+                </article>
+
+                <article class="card tilt" data-tilt="12">
+                    <div class="card-img web">
+                        <span class="num">03</span>
+                        <span class="card-emoji">💻</span>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Sedang belajar membuat website dengan HTML & CSS di PeTIK 2 Jombang.</p>
+                    <div class="tags"><span>HTML</span><span>CSS</span></div>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="about glass reveal" id="about">
+            <div class="section-heading"><span class="section-dot"></span> ABOUT ME</div>
+
+            <div class="about-content">
+                <div>
+                    <h2>Kenali Saya Lebih Dekat</h2>
+                    <p>
+                        Saya merupakan lulusan MAN 1 Jombang tahun 2026
+                        dan saat ini sedang menempuh pendidikan di PeTIK 2 Jombang.
+                        Saya memiliki ketertarikan pada bidang teknologi,
+                        khususnya Software Development dan Web Design.
+                    </p>
+                </div>
+
+                <div class="personal-data">
+                    <div><span>Nama</span><strong>Ahmad Syafi' Muzaqqi</strong></div>
+                    <div><span>Panggilan</span><strong>Syafi'</strong></div>
+                    <div><span>Domisili</span><strong>Jombang, Jawa Timur</strong></div>
+                    <div><span>Pendidikan</span><strong>PeTIK 2 Jombang</strong></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- EDUCATION -->
+        <section class="education glass reveal">
+            <div class="section-heading"><span class="section-dot"></span> EDUCATION</div>
+
+            <div class="education-list">
+                <div class="education-item tilt" data-tilt="10">
+                    <span class="year">2026 - SEKARANG</span>
+                    <h3>PeTIK 2 Jombang</h3>
+                    <p>Pendidikan Teknologi Informasi dan Komunikasi</p>
+                </div>
+                <div class="education-item tilt" data-tilt="10">
+                    <span class="year">2023 - 2026</span>
+                    <h3>MAN 1 Jombang</h3>
+                    <p>Madrasah Aliyah Negeri</p>
+                </div>
+                <div class="education-item tilt" data-tilt="10">
+                    <span class="year">SEBELUMNYA</span>
+                    <h3>SMP Darul Ulum 5 Jombang</h3>
+                    <p>Sekolah Menengah Pertama</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SKILLS + TOOLS + PHILOSOPHY -->
+        <section class="trio reveal">
+
+            <div class="glass pad">
+                <div class="section-heading"><span class="section-dot"></span> SKILLS & EXPERTISE</div>
+                <div class="skill-list">
+                    <div class="skill"><div class="skill-info"><span>Canva Design</span><span>85%</span></div><div class="progress"><div class="progress-bar" data-w="85"></div></div></div>
+                    <div class="skill"><div class="skill-info"><span>CapCut Video Editing</span><span>85%</span></div><div class="progress"><div class="progress-bar" data-w="85"></div></div></div>
+                    <div class="skill"><div class="skill-info"><span>HTML & CSS</span><span>40%</span></div><div class="progress"><div class="progress-bar" data-w="40"></div></div></div>
+                    <div class="skill"><div class="skill-info"><span>Communication</span><span>75%</span></div><div class="progress"><div class="progress-bar" data-w="75"></div></div></div>
+                    <div class="skill"><div class="skill-info"><span>Teamwork</span><span>85%</span></div><div class="progress"><div class="progress-bar" data-w="85"></div></div></div>
+                </div>
+            </div>
+
+            <div class="glass pad">
+                <div class="section-heading"><span class="section-dot"></span> TOOLS & TECHNOLOGY</div>
+                <div class="tools-grid">
+                    <div class="tool tilt" data-tilt="18"><div class="tool-icon">F</div><p>Figma</p></div>
+                    <div class="tool tilt" data-tilt="18"><div class="tool-icon">C</div><p>Canva</p></div>
+                    <div class="tool tilt" data-tilt="18"><div class="tool-icon">▶</div><p>CapCut</p></div>
+                    <div class="tool tilt" data-tilt="18"><div class="tool-icon">H</div><p>HTML</p></div>
+                    <div class="tool tilt" data-tilt="18"><div class="tool-icon">#</div><p>CSS</p></div>
+                    <div class="tool tilt" data-tilt="18"><div class="tool-icon">V</div><p>VS Code</p></div>
+                </div>
+            </div>
+
+            <div class="glass pad philosophy">
+                <div class="section-heading"><span class="section-dot"></span> PERSONAL STRENGTHS</div>
+                <div class="orbit">
+                    <div class="crystal"></div>
+                    <span class="pt p1">Discipline</span>
+                    <span class="pt p2">Teamwork</span>
+                    <span class="pt p3">Willing to<br>Learn</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- STRENGTH DETAIL -->
+        <section class="strength glass reveal">
+            <div class="strength-content">
+                <div class="strength-item tilt" data-tilt="10"><span>01</span><h3>Discipline</h3><p>Mampu menjalankan tanggung jawab dengan baik.</p></div>
+                <div class="strength-item tilt" data-tilt="10"><span>02</span><h3>Teamwork</h3><p>Mampu bekerja sama dan menghargai pendapat orang lain.</p></div>
+                <div class="strength-item tilt" data-tilt="10"><span>03</span><h3>Willing to Learn</h3><p>Memiliki semangat untuk terus belajar hal baru.</p></div>
+            </div>
+        </section>
+
+
+        <!-- CONTACT -->
+        <section class="contact glass reveal" id="contact">
+            <div class="contact-title">
+                <h2>LET'S BUILD<br>SOMETHING<br>GREAT TOGETHER.</h2>
+                <p>Saya selalu terbuka untuk belajar, berkolaborasi, dan mendapatkan pengalaman baru.</p>
+                <a href="#contact" class="btn primary" data-copy="emailkamu@gmail.com">GET IN TOUCH →</a>
+            </div>
+
+            <div class="contact-info glass-inner">
+                <h3>CONTACT INFORMATION</h3>
+                <p class="copyable" data-copy="emailkamu@gmail.com">✉ Email: emailkamu@gmail.com</p>
+                <p class="copyable" data-copy="08xxxxxxxxxx">☎ WhatsApp: 08xxxxxxxxxx</p>
+                <p>⌖ Location: Jombang, Indonesia</p>
+                <small>Klik email / WhatsApp untuk menyalin</small>
+            </div>
+
+            <div class="contact-note">
+                <div class="gem" aria-hidden="true"></div>
+                <h3>THANK YOU!</h3>
+                <p>Terima kasih telah meluangkan waktu untuk mengenal profil saya.</p>
+                <a href="#top" class="back-top">BACK TO TOP ↑</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 AHMAD SYAFI' MUZAQQI. ALL RIGHTS RESERVED.</p>
+            <span>LEARNING • CREATIVITY • TECHNOLOGY</span>
+        </footer>
+
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
