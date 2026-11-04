@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeTIK Jombang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #129cb9;
+            --teal-dark: #0a6f86;
+            --teal-light: #e3f6fa;
+            --yellow: #ffe94d;
+            --yellow-soft: #fff9cc;
+            --ink: #1b2b34;
+            --muted: #55656e;
+            --radius: 24px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 10% 0%, #d7f3f9 0, transparent 40%),
+                radial-gradient(circle at 100% 30%, #fff6b8 0, transparent 35%),
+                #f5f8fa;
+            line-height: 1.7;
+        }
+
+        .wrapper {
+            max-width: 1280px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            position: sticky;
+            top: 14px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 34px;
+            border-radius: 999px;
+            background: linear-gradient(120deg, #19b3d1, var(--teal) 55%, var(--teal-dark));
+            box-shadow: 0 12px 30px rgba(18, 156, 185, .35);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo svg { width: 64px; height: 32px; }
+
+        .logo-text { line-height: 1.1; }
+        .logo-text b { display: block; font-size: 20px; font-weight: 800; letter-spacing: .5px; }
+        .logo-text small { font-size: 11px; opacity: .9; letter-spacing: 2px; text-transform: uppercase; }
+
+        .nav { display: flex; align-items: center; gap: 6px; }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 999px;
+            transition: .25s;
+        }
+
+        .nav a:hover { background: rgba(255, 255, 255, .22); }
+
+        .nav a.cta {
+            background: var(--yellow);
+            color: var(--ink);
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .nav a.cta:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0, 0, 0, .2); }
+
+        /* ================= LAYOUT ================= */
+        .main {
+            display: grid;
+            grid-template-columns: 250px 1fr 230px;
+            gap: 24px;
+            margin-top: 28px;
+            align-items: start;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(20, 60, 80, .08);
+        }
+
+        /* ---------- Sidebar kiri ---------- */
+        .ads {
+            background: linear-gradient(160deg, var(--yellow), #fff3a0);
+            padding: 26px 20px 22px;
+            text-align: center;
+            position: sticky;
+            top: 110px;
+        }
+
+        .ads svg { width: 100%; max-width: 190px; animation: float 4s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .ads h3 { margin-top: 14px; font-size: 18px; font-weight: 700; }
+        .ads p { font-size: 13px; color: #6a6020; margin-bottom: 14px; }
+
+        .btn {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 22px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .25s;
+        }
+
+        .btn:hover { background: var(--teal); }
+
+        /* ---------- Konten ---------- */
+        .content { padding: 40px 44px; }
+
+        .badge {
+            display: inline-block;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+
+        .content h1 {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .content h1 span {
+            background: linear-gradient(120deg, var(--teal), #2fd0b3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .lead {
+            color: var(--muted);
+            font-size: 16px;
+            padding-left: 16px;
+            border-left: 4px solid var(--yellow);
+            margin: 18px 0 26px;
+        }
+
+        .content p.text { text-align: justify; margin-bottom: 20px; color: #2c3c45; }
+
+        .jurusan {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 26px 0;
+        }
+
+        .jurusan .box {
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid #e3edf1;
+            background: linear-gradient(160deg, #fff, var(--teal-light));
+            transition: .3s;
+        }
+
+        .jurusan .box:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(18, 156, 185, .18); }
+
+        .jurusan .ico {
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            display: grid; place-items: center;
+            font-size: 22px;
+            background: var(--teal);
+            margin-bottom: 10px;
+        }
+
+        .jurusan .box:nth-child(2) .ico { background: #f5a623; }
+        .jurusan h4 { font-size: 16px; font-weight: 700; }
+        .jurusan small { color: var(--muted); font-size: 13px; line-height: 1.5; display: block; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+        .tags span {
+            background: var(--yellow-soft);
+            border: 1px solid #f1e27a;
+            font-size: 13px;
+            padding: 3px 12px;
+            border-radius: 999px;
+        }
+
+        /* ---------- Sidebar kanan ---------- */
+        .menu { padding: 22px 16px; position: sticky; top: 110px; }
+
+        .menu h3 {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 0 12px 10px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            border-radius: 14px;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: .25s;
+        }
+
+        .menu a i {
+            font-style: normal;
+            width: 34px; height: 34px;
+            display: grid; place-items: center;
+            border-radius: 10px;
+            background: var(--yellow);
+        }
+
+        .menu a:hover { background: var(--teal); color: #fff; transform: translateX(4px); }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            margin-top: 28px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            padding: 24px;
+            border-radius: 999px;
+            background: linear-gradient(120deg, var(--teal-dark), var(--teal));
+            box-shadow: 0 12px 30px rgba(18, 156, 185, .3);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1000px) {
+            .main { grid-template-columns: 1fr; }
+            .ads, .menu { position: static; }
+            .menu { order: 2; }
+            .content { order: 1; padding: 28px 22px; }
+            .ads { order: 3; }
+            .header { border-radius: 28px; flex-direction: column; gap: 10px; padding: 16px; }
+            .nav { flex-wrap: wrap; justify-content: center; }
+            .jurusan { grid-template-columns: 1fr; }
+            .footer { border-radius: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- ============ HEADER ============ -->
+        <header class="header">
+            <a href="#" class="logo" aria-label="PeTIK Jombang">
+                <svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 25 C62 4, 92 4, 92 25 C92 46, 62 46, 50 25 C38 4, 8 4, 8 25 C8 46, 38 46, 50 25 Z"
+                          stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">
+                    <b>PeTIK</b>
+                    <small>Jombang</small>
+                </span>
+            </a>
+            <nav class="nav">
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Shop</a>
+                <a href="#">Contact</a>
+                <a href="#" class="cta">Daftar Sekarang</a>
+            </nav>
+        </header>
+
+        <!-- ============ MAIN ============ -->
+        <div class="main">
+
+            <!-- Sidebar kiri -->
+            <aside class="card ads">
+                <svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi aplikasi Android">
+                    <path d="M8 12 h40 a6 6 0 0 1 6 6 v26 a6 6 0 0 1 -6 6 h-22 l-12 12 v-12 h-6 a6 6 0 0 1 -6 -6 v-26 a6 6 0 0 1 6 -6z" fill="#f2625c"/>
+                    <circle cx="19" cy="31" r="2.5" fill="#fff"/><circle cx="28" cy="31" r="2.5" fill="#fff"/><circle cx="37" cy="31" r="2.5" fill="#fff"/>
+                    <path d="M150 55 h38 a6 6 0 0 1 6 6 v22 a6 6 0 0 1 -6 6 h-38 z" fill="#4db6e8"/>
+                    <rect x="160" y="62" width="20" height="16" rx="3" fill="#f2625c"/>
+                    <circle cx="170" cy="70" r="4.5" fill="#fff"/>
+                    <rect x="62" y="22" width="62" height="108" rx="9" fill="#fff" stroke="#2a2a3a" stroke-width="4"/>
+                    <rect x="68" y="34" width="50" height="82" rx="3" fill="#18c4e4"/>
+                    <path d="M82 66 a12 12 0 0 1 24 0z" fill="#fff"/>
+                    <circle cx="88" cy="62" r="1.8" fill="#18c4e4"/><circle cx="100" cy="62" r="1.8" fill="#18c4e4"/>
+                    <rect x="80" y="68" width="26" height="24" rx="4" fill="#fff"/>
+                    <rect x="73" y="68" width="5" height="18" rx="2.5" fill="#fff"/>
+                    <rect x="108" y="68" width="5" height="18" rx="2.5" fill="#fff"/>
+                    <path d="M70 118 q-16 6 -14 28 l8 14 h46 l6 -22 q2 -10 -8 -12z" fill="#f6b894"/>
+                    <rect x="68" y="150" width="62" height="22" rx="3" fill="#2a2a3a"/>
+                    <rect x="14" y="82" width="16" height="20" rx="3" fill="#5ec26a"/>
+                    <rect x="40" y="108" width="12" height="12" rx="3" fill="#6bc3f0"/>
+                    <rect x="20" y="148" width="14" height="14" rx="3" fill="#f2625c"/>
+                    <rect x="150" y="110" width="14" height="14" rx="3" fill="#f6a83b"/>
+                    <rect x="146" y="150" width="14" height="14" rx="3" fill="#6bc3f0"/>
+                    <circle cx="136" cy="138" r="5" fill="#5ec26a"/>
+                </svg>
+                <h3>Iklan Android</h3>
+                <p>Belajar bikin aplikasi mobile bersama PeTIK.</p>
+                <a href="#" class="btn">Lihat Info</a>
+            </aside>
+
+            <!-- Konten -->
+            <main class="card content">
+                <span class="badge">Tentang Kami</span>
+                <h1>Informasi Seputar <span>PeTIK Jombang</span></h1>
+
+                <p class="lead">PeTIK Jombang merupakan lembaga pendidikan vokasi Teknologi Informasi dan Komunikasi dengan dukungan pembelajaran bidang kepesantrenan (Kajian Kitab Kuning) dari ulama-ulama yang memiliki sanad keilmuan yang jelas.</p>
+
+                <p class="text">PeTIK Jombang yang merupakan lembaga pendidikan di bawah naungan Yayasan Baitul Maal (YBM) PLN, berkomitmen melanjutkan visi dan misi untuk menebarkan manfaat kepada umat seluas-luasnya. Hal ini diwujudkan dengan memberikan kemanfaatan kepada anak-anak dhuafa untuk mengenyam pendidikan teknologi informasi dan komunikasi selama 1 (satu) tahun. Jurusan pendidikan teknologi informasi dan komunikasi bagi mahasantri dibagi menjadi 2 (dua) jurusan yaitu : Pengembangan Perangkat Lunak (PPL) dan Digital Marketing (DM).</p>
+
+                <div class="jurusan">
+                    <div class="box">
+                        <div class="ico">💻</div>
+                        <h4>Pengembangan Perangkat Lunak (PPL)</h4>
+                        <small>Website, aplikasi berbasis web, aplikasi mobile, UI/UX, database, dan lain-lain.</small>
+                    </div>
+                    <div class="box">
+                        <div class="ico">📈</div>
+                        <h4>Digital Marketing (DM)</h4>
+                        <small>Tool marketing online, iklan Instagram, Facebook, TikTok, dan SEO (Search Engine Optimization).</small>
+                    </div>
+                </div>
+
+                <p class="text">Pada jurusan PPL, mahasantri diajarkan bagaimana membuat website, aplikasi berbasis web, aplikasi mobile, merancang UI/UX, merancang database, dan lain-lain. Jurusan DM, mahasantri diajarkan bagaimana menggunakan tool marketing online melalui internet, memasang iklan melalui Instagram, Facebook, TikTok guna meningkatkan penjualan produk. Selain itu juga diajarkan SEO (Search Engine Optimization). Di bidang kepesantrenan, mahasantri diajarkan:</p>
+
+                <div class="tags">
+                    <span>Kitab Hadits Arbain</span>
+                    <span>Kitab Kuning Taklim Mutaalim</span>
+                    <span>Tauhid (Aqidatul Awam)</span>
+                    <span>Fiqih (Safinatunnajah, Fathul Qorib)</span>
+                    <span>Tasawuf (Sulam Taufiq, Bidayatul Hidayah)</span>
+                    <span>Tafsir (Al Ibris)</span>
+                    <span>Nahwu (Jurumiyah)</span>
+                </div>
+            </main>
+
+            <!-- Sidebar kanan -->
+            <aside class="card menu">
+                <h3>Menu</h3>
+                <a href="#"><i>🏠</i> Beranda</a>
+                <a href="#"><i>📰</i> Article</a>
+                <a href="#"><i>📝</i> Pendaftaran</a>
+                <a href="#"><i>🖼️</i> Galery</a>
+            </aside>
+
+        </div>
+
+        <!-- ============ FOOTER ============ -->
+        <footer class="footer">
+            Copyright © 2023 Programming PeTIK. All Rights Reserved
+        </footer>
+
+    </div>
+</body>
+</html>
