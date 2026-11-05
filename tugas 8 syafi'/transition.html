@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geser Kanan Kiri & Teks Full Width</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Mencegah munculnya scrollbar horizontal di layar */
+    }
+
+    /* Jalur area bola (lebar full selebar layar) */
+    .slide-area {
+      width: 100vw;
+      height: 100px;
+      position: relative;
+    }
+
+    /* Bola hanya bergeser horizontal */
+    .ball {
+      width: 100px;
+      height: 100px;
+      background-color: #4ef2e7;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      /* Animasi gerak kiri-kanan & transisi warna */
+      animation: slideHorizontal 3.5s ease-in-out infinite alternate;
+    }
+
+    /* Bolak-balik mentok tepi kiri hingga mentok tepi kanan layar */
+    @keyframes slideHorizontal {
+      0% {
+        left: 0;
+        background-color: #4ef2e7;
+      }
+      50% {
+        background-color: #ff7675;
+      }
+      100% {
+        /* calc(100vw - lebar_bola) agar pas mentok di batas kanan layar */
+        left: calc(100vw - 100px);
+        background-color: #a29bfe;
+      }
+    }
+
+    /* Background teks mentok penuh dari kiri ke kanan */
+    .marquee-wrapper {
+      width: 100vw; /* 100% lebar viewport/layar */
+      background-color: #88ffdf;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 18px 0;
+      border-top: 1px solid #73ffd5;
+      border-bottom: 1px solid #73ffd5;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Teks berjalan satu arah secara berulang */
+    .marquee-text {
+      display: inline-block;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #ff0000;
+      padding-left: 100vw; /* Muncul dari luar batas kanan layar */
+      animation: marqueeOneWay 12s linear infinite;
+    }
+
+    @keyframes marqueeOneWay {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-100%, 0, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Area Bola Geser (Full Width) -->
+  <div class="slide-area">
+    <div class="ball"></div>
+  </div>
+
+  <!-- Area Background Teks Mentok Kanan Kiri -->
+  <div class="marquee-wrapper">
+    <div class="marquee-text">
+      Assalamu'alaikum Selamat Belajar Web Design.
+    </div>
+  </div>
+
+</body>
+</html>
