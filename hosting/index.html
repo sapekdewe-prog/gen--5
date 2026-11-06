@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmad Syafi' Muzaqqi | Junior Software Developer & Tech Enthusiast</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#090d16] text-slate-800 dark:text-slate-200 transition-colors duration-300 font-sans selection:bg-blue-600 selection:text-white">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-[#090d16]/80 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Monogram Logo -->
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-500 flex items-center justify-center text-white font-mono font-bold text-lg tracking-tighter shadow-md shadow-blue-600/30 group-hover:scale-105 transition-transform">
+          ASM
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-slate-900 dark:text-white leading-tight tracking-tight text-sm sm:text-base">Ahmad Syafi' M.</span>
+          <span class="text-[11px] text-blue-600 dark:text-blue-400 font-mono tracking-wider font-semibold">SOFTWARE DEV</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#about" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tentang</a>
+        <a href="#skills" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tech Stack</a>
+        <a href="#projects" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Proyek</a>
+        <a href="#experience" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Perjalanan</a>
+        <a href="#contact" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Kontak</a>
+      </nav>
+
+      <!-- Action Items (Dark Mode & CTA) -->
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle Theme" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all border border-slate-200 dark:border-slate-700">
+          <i data-lucide="sun" id="sun-icon" class="w-4 h-4 hidden"></i>
+          <i data-lucide="moon" id="moon-icon" class="w-4 h-4"></i>
+        </button>
+
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-600/30 transition-all hover:shadow-md hover:shadow-blue-600/40">
+          <span>Mari Diskusi</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0e1424] px-4 pt-2 pb-4 space-y-2">
+      <a href="#about" class="block py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600">Tentang</a>
+      <a href="#skills" class="block py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600">Tech Stack</a>
+      <a href="#projects" class="block py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600">Proyek</a>
+      <a href="#experience" class="block py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600">Perjalanan</a>
+      <a href="#contact" class="block py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600">Kontak</a>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative overflow-hidden py-20 lg:py-28">
+      <!-- Glow Gradients -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[300px] bg-blue-600/15 dark:bg-blue-600/20 blur-[130px] rounded-full -z-10 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Bio & Headline -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-50/60 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 text-xs font-mono font-medium">
+              <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Available for Collaborations & Projects
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+              Membangun Solusi Digital dengan <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-400">Arsitektur Bersih & Presisi</span>.
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+              Halo, saya <span class="font-semibold text-slate-900 dark:text-white">Ahmad Syafi' Muzaqqi</span>. Seorang software developer yang berfokus pada perancangan logika backend terstruktur, integrasi database efisien, serta antarmuka web modern yang cepat dan responsif.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow-lg shadow-blue-600/30 hover:shadow-xl transition-all">
+                <span>Lihat Karya & Proyek</span>
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+              </a>
+              <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800/60 font-medium text-sm text-slate-700 dark:text-slate-200 transition-all">
+                <span>Hubungi Saya</span>
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </a>
+            </div>
+
+            <!-- Highlights -->
+            <div class="pt-8 border-t border-slate-200 dark:border-slate-800/80 grid grid-cols-3 gap-4 max-w-lg">
+              <div>
+                <p class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">100%</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Struktur Modular</p>
+              </div>
+              <div>
+                <p class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">Fullstack</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Python & Modern Web</p>
+              </div>
+              <div>
+                <p class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">UI/UX</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Clean & Responsive</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Code Snapshot Card -->
+          <div class="lg:col-span-5">
+            <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl bg-slate-900/90 border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+              <!-- Window dots -->
+              <div class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs font-mono text-slate-400">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                </div>
+                <span>developer_profile.py</span>
+                <span class="text-blue-400">UTF-8</span>
+              </div>
+
+              <!-- Terminal Code Content -->
+              <div class="pt-4 font-mono text-xs sm:text-sm text-slate-300 leading-relaxed overflow-x-auto">
+                <p><span class="text-purple-400">class</span> <span class="text-yellow-400">SoftwareDeveloper</span>:</p>
+                <p class="pl-4"><span class="text-purple-400">def</span> <span class="text-blue-400">__init__</span>(<span class="text-rose-400">self</span>):</p>
+                <p class="pl-8"><span class="text-rose-400">self</span>.name = <span class="text-emerald-400">"Ahmad Syafi' Muzaqqi"</span></p>
+                <p class="pl-8"><span class="text-rose-400">self</span>.alias = <span class="text-emerald-400">"AESSEM (ASM)"</span></p>
+                <p class="pl-8"><span class="text-rose-400">self</span>.core_stack = [<span class="text-emerald-400">"Python"</span>, <span class="text-emerald-400">"Flask"</span>, <span class="text-emerald-400">"SQLite"</span>, <span class="text-emerald-400">"Tailwind"</span>]</p>
+                <p class="pl-8"><span class="text-rose-400">self</span>.focus = <span class="text-emerald-400">"High-Performance Web & Architecture"</span></p>
+                <p class="pl-8"><span class="text-rose-400">self</span>.ready_for_work = <span class="text-amber-400">True</span></p>
+                <br>
+                <p class="pl-4"><span class="text-purple-400">def</span> <span class="text-blue-400">deploy_value</span>(<span class="text-rose-400">self</span>):</p>
+                <p class="pl-8"><span class="text-purple-400">return</span> <span class="text-emerald-400">"Deliver robust software with high reliability."</span></p>
+              </div>
+
+              <!-- Status Badge inside card -->
+              <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <span class="text-slate-400 flex items-center gap-2">
+                  <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i> Code Quality: Checked
+                </span>
+                <span class="text-blue-400 font-mono font-semibold">Python 3.12+</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white dark:bg-[#0c1220] border-y border-slate-200 dark:border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          
+          <div class="md:col-span-5">
+            <div class="relative mx-auto w-64 h-64 sm:w-72 sm:h-72 rounded-3xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-slate-900 p-1 shadow-2xl">
+              <div class="w-full h-full bg-slate-100 dark:bg-slate-900 rounded-[22px] flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-20 h-20 rounded-2xl bg-blue-600/10 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
+                  <i data-lucide="code-2" class="w-10 h-10"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Ahmad Syafi' M.</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-mono">Software Engineering Discipline</p>
+                <div class="mt-4 flex gap-2">
+                  <span class="px-2.5 py-1 text-[11px] rounded-md bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-medium">Backend Mindset</span>
+                  <span class="px-2.5 py-1 text-[11px] rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Clean Code</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-7 space-y-5">
+            <div class="inline-block text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              # Profil & Pendekatan Kerja
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">
+              Menggabungkan ketelitian logika back-end dengan estetika tampilan front-end.
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+              Saya mendalami rekayasa perangkat lunak dengan pendekatan terencana. Sebelum menulis baris kode pertama, saya selalu memprioritaskan perancangan skema basis data modular, arsitektur alur multi-role, dan pemetaan relasi data yang solid.
+            </p>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+              Bagi saya, aplikasi yang handal tidak hanya cepat dan aman di sisi server, namun juga wajib memberikan pengalaman navigasi yang intuitif serta nyaman di mata pengguna (*user-centric design*).
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              <div class="flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 mt-0.5">
+                  <i data-lucide="database" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Struktur Relasional</h4>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Desain skema database yang efisien dan normalisasi data tepat sasaran.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 mt-0.5">
+                  <i data-lucide="layout" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Desain Web Responsif</h4>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Komponen UI mobile-first dengan Tailwind CSS dan interaktivitas JavaScript.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH STACK & SKILLS -->
+    <section id="skills" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Toolkit & Pengalaman</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">Teknologi yang Biasa Digunakan</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Kumpulan bahasa pemrograman, framework, dan teknologi pendukung dalam pengembangan aplikasi.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <!-- Python -->
+          <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:-translate-y-1 transition-all text-center group shadow-sm">
+            <div class="w-12 h-12 mx-auto rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="terminal" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Python</h3>
+            <p class="text-[11px] text-slate-500 font-mono mt-1">Backend Logic</p>
+          </div>
+
+          <!-- Flask -->
+          <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:-translate-y-1 transition-all text-center group shadow-sm">
+            <div class="w-12 h-12 mx-auto rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="server" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Flask</h3>
+            <p class="text-[11px] text-slate-500 font-mono mt-1">Web Framework</p>
+          </div>
+
+          <!-- SQLite / SQL -->
+          <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:-translate-y-1 transition-all text-center group shadow-sm">
+            <div class="w-12 h-12 mx-auto rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="database" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">SQLite</h3>
+            <p class="text-[11px] text-slate-500 font-mono mt-1">Data Modeling</p>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:-translate-y-1 transition-all text-center group shadow-sm">
+            <div class="w-12 h-12 mx-auto rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="code" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">JavaScript</h3>
+            <p class="text-[11px] text-slate-500 font-mono mt-1">Client Logic</p>
+          </div>
+
+          <!-- Tailwind CSS -->
+          <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:-translate-y-1 transition-all text-center group shadow-sm">
+            <div class="w-12 h-12 mx-auto rounded-lg bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="palette" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Tailwind CSS</h3>
+            <p class="text-[11px] text-slate-500 font-mono mt-1">Utility UI</p>
+          </div>
+
+          <!-- Git & Linux -->
+          <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:-translate-y-1 transition-all text-center group shadow-sm">
+            <div class="w-12 h-12 mx-auto rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="git-branch" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Git & CLI</h3>
+            <p class="text-[11px] text-slate-500 font-mono mt-1">Version Control</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-white dark:bg-[#0c1220] border-t border-slate-200 dark:border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Showcase Karya</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Proyek Terpilih</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Pilihan aplikasi yang dibangun dengan struktur arsitektur modular dan performa optimal.</p>
+          </div>
+
+          <!-- Filter Category Buttons -->
+          <div class="flex items-center gap-2 p-1.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium self-start md:self-auto">
+            <button class="project-filter-btn px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm" data-filter="all">Semua</button>
+            <button class="project-filter-btn px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-white" data-filter="fullstack">Fullstack / Web App</button>
+            <button class="project-filter-btn px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-white" data-filter="frontend">Landing & UI</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+          
+          <!-- Project 1: Used Motorcycle Parts Marketplace -->
+          <div class="project-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 overflow-hidden hover:border-blue-500/50 hover:shadow-xl transition-all" data-category="fullstack">
+            <div class="relative h-48 bg-gradient-to-br from-slate-800 to-slate-950 p-6 flex flex-col justify-between overflow-hidden">
+              <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-blue-600/20 blur-xl group-hover:scale-150 transition-transform"></div>
+              <div class="flex items-center justify-between z-10">
+                <span class="px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30">Fullstack Web</span>
+                <i data-lucide="cpu" class="w-5 h-5 text-slate-400"></i>
+              </div>
+              <div class="z-10">
+                <p class="text-xs font-mono text-blue-400 mb-1">Architecture & Commerce</p>
+                <h3 class="text-xl font-bold text-white tracking-tight">MotoPart Second Commerce</h3>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Platform marketplace jual beli spare part motor bekas dengan pembagian role bertingkat (Pembeli, Penjual, dan Kurir Logistik), manajemen status pesanan, serta integrasi database relasional.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python Flask</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SQLite</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Tailwind CSS</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">RBAC Security</span>
+              </div>
+
+              <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
+                <button onclick="openModal('MotoPart Second Commerce', 'Aplikasi marketplace berbasis Flask & SQLite untuk perdagangan suku cadang motor bekas. Memiliki modul Multi-Role: Pembeli dapat memilih barang dan checkout, Penjual mengelola katalog stok dan pesanan masuk, serta Kurir mengupdate status resi logistik secara terpadu.')" class="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                  Detail Arsitektur <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <div class="flex items-center gap-3 text-slate-400">
+                  <i data-lucide="git-branch" class="w-4 h-4 hover:text-white transition-colors cursor-pointer" title="Repository"></i>
+                  <i data-lucide="external-link" class="w-4 h-4 hover:text-white transition-colors cursor-pointer" title="Demo"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Smart Laundry Service Landing & Tracker -->
+          <div class="project-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 overflow-hidden hover:border-blue-500/50 hover:shadow-xl transition-all" data-category="frontend">
+            <div class="relative h-48 bg-gradient-to-br from-indigo-950 to-slate-950 p-6 flex flex-col justify-between overflow-hidden">
+              <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-indigo-600/20 blur-xl group-hover:scale-150 transition-transform"></div>
+              <div class="flex items-center justify-between z-10">
+                <span class="px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Frontend & Landing</span>
+                <i data-lucide="sparkles" class="w-5 h-5 text-slate-400"></i>
+              </div>
+              <div class="z-10">
+                <p class="text-xs font-mono text-indigo-400 mb-1">Commercial Page</p>
+                <h3 class="text-xl font-bold text-white tracking-tight">Kilas Laundry Digital Hub</h3>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Halaman profil bisnis layanan cuci modern dengan tabel kalkulasi harga interaktif, integrasi tautan langsung ke WhatsApp Order, dan fitur pelacakan status pengerjaan yang cepat.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">HTML5 Semantic</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Tailwind CSS</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Vanilla JS</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">WhatsApp API Link</span>
+              </div>
+
+              <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
+                <button onclick="openModal('Kilas Laundry Web App', 'Situs landing responsif dengan rasio konversi tinggi untuk bisnis cuci kiloan dan satuan. Menggabungkan kalkulator otomatis biaya cuci, integrasi pesanan berbasis chat WhatsApp, dan antarmuka mobile-first.')" class="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                  Detail Arsitektur <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <div class="flex items-center gap-3 text-slate-400">
+                  <i data-lucide="git-branch" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></i>
+                  <i data-lucide="external-link" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Database & Academic Schema Manager -->
+          <div class="project-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 overflow-hidden hover:border-blue-500/50 hover:shadow-xl transition-all" data-category="fullstack">
+            <div class="relative h-48 bg-gradient-to-br from-cyan-950 to-slate-950 p-6 flex flex-col justify-between overflow-hidden">
+              <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-cyan-600/20 blur-xl group-hover:scale-150 transition-transform"></div>
+              <div class="flex items-center justify-between z-10">
+                <span class="px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Backend Tool</span>
+                <i data-lucide="database" class="w-5 h-5 text-slate-400"></i>
+              </div>
+              <div class="z-10">
+                <p class="text-xs font-mono text-cyan-400 mb-1">Data Modeling</p>
+                <h3 class="text-xl font-bold text-white tracking-tight">Student Data & Roster Engine</h3>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Sistem pengelolaan data entitas siswa dan pemetaan kelas terstruktur. Mampu mengeksekusi *batch formatting*, pembuatan laporan dokumen, serta kueri pencarian multi-kolom yang optimal.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python Scripting</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SQLite relational</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Data Parsing</span>
+              </div>
+
+              <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
+                <button onclick="openModal('Student Roster Engine', 'Engine pemrosesan data berbasis Python untuk mengatur relasi entitas peserta didik, sanitasi data input, dan otomasi penyusunan arsip dokumen secara presisi tanpa redundansi.')" class="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                  Detail Arsitektur <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <div class="flex items-center gap-3 text-slate-400">
+                  <i data-lucide="git-branch" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></i>
+                  <i data-lucide="external-link" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & JOURNEY SECTION -->
+    <section id="experience" class="py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Milestone & Rekam Jejak</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Perjalanan Karir & Edukasi</h2>
+        </div>
+
+        <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 sm:ml-8 space-y-10">
+          
+          <!-- Item 1 -->
+          <div class="relative pl-6 sm:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white dark:border-[#090d16]"></div>
+            <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">Saat ini • 2026</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">Software Engineering Candidate</h3>
+            <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">PETIK II • Pengembangan Perangkat Lunak</p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Memperdalam arsitektur web modern, standarisasi RESTful API menggunakan Flask, desain basis data relasional SQLite, dan implementasi UI yang presisi melalui Tailwind CSS.
+            </p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="relative pl-6 sm:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-white dark:border-[#090d16]"></div>
+            <span class="text-xs font-mono font-semibold text-slate-500">2025</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">Secondary Education Completion</h3>
+            <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Astrivenza Cohort</p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Aktif dalam inisiatif koordinasi visual dan manajemen proyek kelas, membangun fondasi kerja sama tim, komunikasi terstruktur, serta ketertarikan mendalam pada teknologi komputer.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-white dark:bg-[#0c1220] border-t border-slate-200 dark:border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Terbuka Untuk Kesempatan</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Mari Terhubung & Mulai Kolaborasi.</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Memiliki ide proyek aplikasi, kebutuhan arsitektur sistem, atau ingin mendiskusikan peluang kerja sama? Silakan kirimkan pesan langsung melalui form atau kontak yang tersedia.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
+                <div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-slate-900 dark:text-white">Lokasi</p>
+                  <p class="text-xs text-slate-500">Jombang, Jawa Timur, Indonesia</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
+                <div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-slate-900 dark:text-white">Email Resmi</p>
+                  <p class="text-xs text-slate-500 font-mono">kontak@ahmadsyafi.dev</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:col-span-7">
+            <form id="contact-form" class="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/50 space-y-5 shadow-sm">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">Nama Lengkap</label>
+                  <input type="text" required placeholder="Nama Anda" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-slate-900 dark:text-white">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                  <input type="email" required placeholder="email@domain.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-slate-900 dark:text-white">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">Subjek</label>
+                <input type="text" required placeholder="Diskusi Proyek Web / Rekrutmen" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-slate-900 dark:text-white">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">Pesan</label>
+                <textarea rows="4" required placeholder="Tuliskan detail pesan atau kebutuhan proyek Anda di sini..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-slate-900 dark:text-white"></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/30 transition-all flex items-center justify-center gap-2">
+                <span>Kirim Pesan</span>
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </button>
+
+              <div id="form-alert" class="hidden p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs text-center font-medium">
+                Terima kasih! Pesan Anda telah terkirim dan segera direspon.
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#070a12] py-8 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-mono font-bold text-blue-600 dark:text-blue-400">ASM</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-slate-500">&copy; 2026 Ahmad Syafi' Muzaqqi. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6 text-slate-500">
+        <a href="#hero" class="hover:text-blue-600 dark:hover:text-white transition-colors">Kembali ke Atas</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DETAIL MODAL -->
+  <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-700 max-w-lg w-full rounded-2xl p-6 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 font-mono text-[11px] mb-3">
+        Project Specification
+      </div>
+      <h3 id="modal-title" class="text-xl font-bold text-slate-900 dark:text-white">Nama Proyek</h3>
+      <p id="modal-desc" class="text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+        Deskripsi detail...
+      </p>
+      <div class="mt-6 flex justify-end">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Dark Mode Toggle Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    function updateIcons(isDark) {
+      if (isDark) {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    // Default check
+    if (localStorage.getItem('color-theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+      updateIcons(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      updateIcons(true);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+        updateIcons(false);
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+        updateIcons(true);
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Project Filtering
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-900', 'dark:text-white', 'shadow-sm');
+          b.classList.add('text-slate-600', 'dark:text-slate-400');
+        });
+        btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-900', 'dark:text-white', 'shadow-sm');
+        btn.classList.remove('text-slate-600', 'dark:text-slate-400');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Modal Control
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+
+    function openModal(title, desc) {
+      modalTitle.innerText = title;
+      modalDesc.innerText = desc;
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+    }
+
+    // Contact Form Simulation
+    const contactForm = document.getElementById('contact-form');
+    const formAlert = document.getElementById('form-alert');
+    const submitBtn = document.getElementById('submit-btn');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Mengirim...</span>`;
+      
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>Kirim Pesan</span><i data-lucide="send" class="w-4 h-4"></i>`;
+        lucide.createIcons();
+        formAlert.classList.remove('hidden');
+        contactForm.reset();
+        setTimeout(() => formAlert.classList.add('hidden'), 5000);
+      }, 900);
+    });
+  </script>
+</body>
+</html>
