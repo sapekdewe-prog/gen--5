@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV & Portofolio - Nama Lengkap Anda</title>
+<style>
+  :root {
+    --primary: #1e3a5f;
+    --accent: #2f80ed;
+    --text: #222;
+    --muted: #667085;
+    --line: #e4e7ec;
+    --bg: #f4f6f9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+    padding: 24px 16px;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  aside {
+    background: var(--primary);
+    color: #fff;
+    padding: 32px 24px;
+  }
+  .avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: #ffffff22 center/cover no-repeat;
+    border: 3px solid #ffffff55;
+    margin: 0 auto 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; font-weight: 600;
+    /* Ganti dengan foto: background-image: url("foto.jpg"); */
+  }
+  aside h2 {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ffffff44;
+    padding-bottom: 6px;
+    margin: 24px 0 10px;
+  }
+  aside ul { list-style: none; font-size: 14px; }
+  aside li { margin-bottom: 8px; word-break: break-word; }
+  aside a { color: #fff; text-decoration: none; }
+  aside a:hover { text-decoration: underline; }
+  .skill { margin-bottom: 10px; font-size: 13px; }
+  .bar { height: 6px; background: #ffffff33; border-radius: 3px; margin-top: 4px; }
+  .bar span { display: block; height: 100%; background: #fff; border-radius: 3px; }
+  main { padding: 36px 36px 32px; }
+  header h1 { font-size: 32px; color: var(--primary); line-height: 1.2; }
+  header .role { font-size: 17px; color: var(--accent); font-weight: 600; margin-top: 4px; }
+  section { margin-top: 26px; }
+  section > h2 {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+  .item { margin-bottom: 16px; }
+  .item-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .item-title { font-weight: 600; }
+  .item-sub { color: var(--muted); font-size: 14px; }
+  .item-date { color: var(--muted); font-size: 13px; white-space: nowrap; }
+  .item ul { margin: 6px 0 0 18px; font-size: 14.5px; }
+  .item li { margin-bottom: 3px; }
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .project {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .project:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); transform: translateY(-2px); }
+  .project h3 { font-size: 15px; color: var(--primary); }
+  .project p { font-size: 13.5px; margin: 6px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .tags span {
+    background: #eaf2fe; color: var(--accent);
+    font-size: 12px; padding: 2px 8px; border-radius: 999px;
+  }
+  .project a { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .project a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .page { grid-template-columns: 1fr; }
+    .projects { grid-template-columns: 1fr; }
+    main { padding: 24px 20px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; max-width: none; }
+    aside { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .project:hover { box-shadow: none; transform: none; }
+    .item, .project { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="avatar">NA</div>
+
+    <h2>Kontak</h2>
+    <ul>
+      <li>📍 Surabaya, Jawa Timur</li>
+      <li>✉️ <a href="mailto:email@contoh.com">email@contoh.com</a></li>
+      <li>📱 +62 812-0000-0000</li>
+      <li>🔗 <a href="https://linkedin.com/in/username">linkedin.com/in/username</a></li>
+      <li>🌐 <a href="https://website-anda.com">website-anda.com</a></li>
+    </ul>
+
+    <h2>Keahlian</h2>
+    <div class="skill">Keahlian Utama 1<div class="bar"><span style="width:90%"></span></div></div>
+    <div class="skill">Keahlian Utama 2<div class="bar"><span style="width:80%"></span></div></div>
+    <div class="skill">Keahlian Utama 3<div class="bar"><span style="width:75%"></span></div></div>
+    <div class="skill">Keahlian Utama 4<div class="bar"><span style="width:70%"></span></div></div>
+
+    <h2>Bahasa</h2>
+    <ul>
+      <li>Indonesia: Penutur asli</li>
+      <li>Inggris: Profesional</li>
+    </ul>
+
+    <h2>Sertifikasi</h2>
+    <ul>
+      <li>Nama Sertifikasi, Penerbit (2025)</li>
+      <li>Nama Sertifikasi, Penerbit (2024)</li>
+    </ul>
+  </aside>
+
+  <!-- KONTEN UTAMA -->
+  <main>
+    <header>
+      <h1>Nama Lengkap Anda</h1>
+      <div class="role">Jabatan / Bidang yang Dituju</div>
+    </header>
+
+    <section>
+      <h2>Profil</h2>
+      <p>Profesional di bidang [bidang Anda] dengan pengalaman [X] tahun dalam [keahlian utama]. Terbukti mampu [pencapaian utama, misalnya meningkatkan efisiensi 30%] dan bekerja sama lintas tim. Mencari peran sebagai [posisi tujuan] untuk berkontribusi pada [tujuan atau nilai bagi perusahaan].</p>
+    </section>
+
+    <section>
+      <h2>Pengalaman Kerja</h2>
+      <div class="item">
+        <div class="item-head">
+          <div><span class="item-title">Jabatan</span> · <span class="item-sub">Nama Perusahaan, Kota</span></div>
+          <div class="item-date">Jan 2023 – Sekarang</div>
+        </div>
+        <ul>
+          <li>Memimpin [proyek/tugas] yang menghasilkan [hasil terukur, misalnya peningkatan 25%].</li>
+          <li>Mengelola [tanggung jawab] untuk [jumlah] klien/tim/pengguna.</li>
+          <li>Mengembangkan [proses/produk] sehingga [dampak bagi perusahaan].</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="item-head">
+          <div><span class="item-title">Jabatan Sebelumnya</span> · <span class="item-sub">Nama Perusahaan, Kota</span></div>
+          <div class="item-date">Jun 2020 – Des 2022</div>
+        </div>
+        <ul>
+          <li>Pencapaian atau tanggung jawab utama dengan angka bila memungkinkan.</li>
+          <li>Kolaborasi dengan [tim/departemen] untuk menyelesaikan [masalah].</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Proyek Portofolio</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>Nama Proyek 1</h3>
+          <p>Deskripsi singkat masalah, peran Anda, dan hasil yang dicapai.</p>
+          <div class="tags"><span>Tools A</span><span>Tools B</span><span>Tools C</span></div>
+          <a href="#">Lihat proyek →</a>
+        </div>
+        <div class="project">
+          <h3>Nama Proyek 2</h3>
+          <p>Deskripsi singkat masalah, peran Anda, dan hasil yang dicapai.</p>
+          <div class="tags"><span>Tools A</span><span>Tools D</span></div>
+          <a href="#">Lihat proyek →</a>
+        </div>
+        <div class="project">
+          <h3>Nama Proyek 3</h3>
+          <p>Deskripsi singkat masalah, peran Anda, dan hasil yang dicapai.</p>
+          <div class="tags"><span>Tools B</span><span>Tools E</span></div>
+          <a href="#">Lihat proyek →</a>
+        </div>
+        <div class="project">
+          <h3>Nama Proyek 4</h3>
+          <p>Deskripsi singkat masalah, peran Anda, dan hasil yang dicapai.</p>
+          <div class="tags"><span>Tools C</span><span>Tools F</span></div>
+          <a href="#">Lihat proyek →</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pendidikan</h2>
+      <div class="item">
+        <div class="item-head">
+          <div><span class="item-title">S1 Nama Jurusan</span> · <span class="item-sub">Nama Universitas</span></div>
+          <div class="item-date">2016 – 2020</div>
+        </div>
+        <ul><li>IPK 3,xx/4,00. Organisasi, penghargaan, atau skripsi relevan.</li></ul>
+      </div>
+    </section>
+  </main>
+
+</div>
+</body>
+</html>
