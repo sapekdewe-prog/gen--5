@@ -3,3 +3,9 @@ for (let i = 1; i <= 10; i++) {
         console.log(i);
     }
 }
+
+VM517:3 2
+VM517:3 4
+VM517:3 6
+VM517:3 8
+VM517:3 10
