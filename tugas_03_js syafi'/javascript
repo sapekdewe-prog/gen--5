@@ -1,0 +1,11 @@
+let nama = "Ahmad Syafi Muzaqqi";
+let umur = 19;
+let siswa = true
+console.log("Nama",nama);
+console.log("Umur",umur);
+console.log("Siswa",siswa);
+
+let nilai = 70;
+ console.log("Nilai awal:", nilai);
+ nilai = 85;
+ console.log("Nilai baru:", nilai);
